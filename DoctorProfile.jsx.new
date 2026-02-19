@@ -1,0 +1,37 @@
+import React, { useEffect, useState, useContext } from 'react'
+import { DoctorContext } from '../../context/DoctorContext'
+import { AppContext } from '../../context/AppContex'
+
+const DoctorProfile = () => {
+  const { dToken, profileData, getProfileData, updateProfileData } = useContext(DoctorContext)
+  const { currency } = useContext(AppContext)
+  const [isEdit, setIsEdit] = useState(false)
+  const [formData, setFormData] = useState({
+    fees: '',
+    address: { line1: '', line2: '' },
+    availability: false
+  })
+
+  useEffect(() => {
+    if (dToken) {
+      getProfileData()
+    }
+  }, [dToken, getProfileData])
+
+  // Rest of your component code...
+  
+  return (
+    <div>
+      {/* Your JSX here */}
+      <div>
+        <p className='text-gray-600 font-medium mt-4'>
+          Appointment fee : <span className='text-gray-800'>
+            {currency}{isEdit ? <input type="number" onChange={(e) => setProfileData({...profileData, fees: e.target.value})} value={profileData.fees} /> : profileData.fees}
+          </span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default DoctorProfile
