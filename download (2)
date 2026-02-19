@@ -1,0 +1,6 @@
+engine-strict=true
+legacy-peer-deps=true
+prefer-offline=true
+strict-peer-dependencies=false
+auto-install-peers=true
+shamefully-hoist=true
